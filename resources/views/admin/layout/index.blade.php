@@ -150,6 +150,37 @@
                         </ul>
                     </li>
                     
+                    <li class="active">
+                        <a href="#"><i class="icon-picture"></i> 轮播图管理</a>
+                        <ul>
+                            <li><a href="/admin/lunbo">  轮播图列表</a></li>
+                            <li><a href="/admin/lunbo/create">  轮播图添加</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="active">
+                        <a href="#"><i class="icon-paper-airplane"></i> 导航条管理</a>
+                        <ul>
+                            <li><a href="/admin/daohang"></i>  导航列表</a></li>
+                            <li><a href="/admin/daohang/create">  导航添加</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="active">
+                        <a href="#"><i class="icon-picassa"></i> 友情链接管理</a>
+                        <ul>
+                            <li><a href="/admin/link"></i>  友情链接列表</a></li>
+                            <li><a href="/admin/link/create">  友情链接添加</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="active">
+                        <a href="#"><i class="icon-plus"></i> 收货地址管理</a>
+                        <ul>
+                            <li><a href="/admin/dresse"></i>  收货地址列表</a></li>
+                            <li><a href="/admin/dresse/create">  收货地址添加</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>

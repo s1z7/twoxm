@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Cates;
 use App\Models\Goods;
-
+use App\Models\Banner;
+use App\Models\Daohang;
+use App\Models\Link;
 class IndexController extends Controller
 {   
     public static function getPidCateData($pid = 0)
@@ -26,12 +28,22 @@ class IndexController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {  
+
+        //获取轮播图
+        $data_pic = Banner::get();
+
+        //获取导航条
+        $data_daohang = Daohang::get();
+
+        //获取友情链接
+        $data_link = Link::get();
+
         // 获取商品数据
         $goods = Goods::all();
 
         // 加载视图
-        return view('home.index.index',['goods'=>$goods]);
+        return view('home.index.index',['data_link'=>$data_link,'data_pic'=>$data_pic,'data_daohang'=>$data_daohang,'goods'=>$goods]);
     }
 
     /**

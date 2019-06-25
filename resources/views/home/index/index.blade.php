@@ -235,15 +235,9 @@
             </div>
         </div>  
         <!--End 商品分类详情 End-->                                                     
-    	<ul class="menu_r">                                                                                                                                               
-        	<li><a href="Index.html">首页</a></li>
-            <li><a href="Food.html">美食</a></li>
-            <li><a href="Fresh.html">生鲜</a></li>
-            <li><a href="HomeDecoration.html">家居</a></li>
-            <li><a href="SuitDress.html">女装</a></li>
-            <li><a href="MakeUp.html">美妆</a></li>
-            <li><a href="Digital.html">数码</a></li>
-            <li><a href="GroupBuying.html">团购</a></li>
+    	<ul class="menu_r">                                                          @foreach($data_daohang as $k=>$v)        
+        	  <li><a style="color:black;font-weight:bold" href="{{$v->dlink}}">{{$v->dname}}</a></li>
+        @endforeach
         </ul>
         <div class="m_ad">中秋送好礼！</div>
     </div>
@@ -254,11 +248,11 @@
 		<!--Begin Banner Begin-->
     	<div class="banner">    	
             <div class="top_slide_wrap">
-                <ul class="slide_box bxslider">
-                    <li><img src="/h/images/ban1.jpg" width="740" height="401" /></li>
-                    <li><img src="/h/images/ban1.jpg" width="740" height="401" /></li> 
-                    <li><img src="/h/images/ban1.jpg" width="740" height="401" /></li> 
-                </ul>	
+                <<ul class="slide_box bxslider">
+                	@foreach($data_pic as $k=>$v)
+                    <li><img src="/uploads/{{$v->pic}}" width="740" height="401" /></li>
+                    @endforeach
+                </ul>
                 <div class="op_btns clearfix">
                     <a href="#" class="op_btn op_prev"><span></span></a>
                     <a href="#" class="op_btn op_next"><span></span></a>
@@ -927,37 +921,9 @@
         </div>
     </div>
     <div class="b_nav">
-    	<dl>                                                                                            
-        	<dt><a href="#">新手上路</a></dt>
-            <dd><a href="#">售后流程</a></dd>
-            <dd><a href="#">购物流程</a></dd>
-            <dd><a href="#">订购方式</a></dd>
-            <dd><a href="#">隐私声明</a></dd>
-            <dd><a href="#">推荐分享说明</a></dd>
-        </dl>
-        <dl>
-        	<dt><a href="#">配送与支付</a></dt>
-            <dd><a href="#">货到付款区域</a></dd>
-            <dd><a href="#">配送支付查询</a></dd>
-            <dd><a href="#">支付方式说明</a></dd>
-        </dl>
-        <dl>
-        	<dt><a href="#">会员中心</a></dt>
-            <dd><a href="#">资金管理</a></dd>
-            <dd><a href="#">我的收藏</a></dd>
-            <dd><a href="#">我的订单</a></dd>
-        </dl>
-        <dl>
-        	<dt><a href="#">服务保证</a></dt>
-            <dd><a href="#">退换货原则</a></dd>
-            <dd><a href="#">售后服务保证</a></dd>
-            <dd><a href="#">产品质量保证</a></dd>
-        </dl>
-        <dl>
-        	<dt><a href="#">联系我们</a></dt>
-            <dd><a href="#">网站故障报告</a></dd>
-            <dd><a href="#">购物咨询</a></dd>
-            <dd><a href="#">投诉与建议</a></dd>
+    	<dl>                                                                            @foreach($data_link as $k=>$v)                
+        	<dt><a href="{{$v->url}}">{{$v->name}}</a></dt>
+              @endforeach
         </dl>
         <div class="b_tel_bg">
         	<a href="#" class="b_sh1">新浪微博</a>            

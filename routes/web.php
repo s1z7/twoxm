@@ -24,6 +24,18 @@ Route::resource('admin/users','Admin\UsersController');
 // 后台 分类
 Route::resource('admin/cates','admin\CatesController');
 
+// 后台 轮播图
+Route::resource('admin/lunbo','admin\LunboController');
+
+// 后台 导航条
+Route::resource('admin/daohang','admin\DaohangController');
+
+// 后台 友情链接
+Route::resource('admin/link','admin\LinkController');
+
+// 后台 收货地址
+Route::resource('admin/dresse','admin\DresseController');
+
 
 // 后台 品牌
 Route::resource('admin/brands','admin\BrandsController');
