@@ -163,8 +163,8 @@
 <div class="top">
     <div class="logo"><a href="Index.html"><img src="/h/images/logo.png" /></a></div>
     <div class="search">
-    	<form>
-        	<input type="text" value="" class="s_ipt" />
+    	<form action="/home/list" method="get">
+            <input type="text" value="" class="s_ipt" name="search" />
             <input type="submit" value="搜索" class="s_btn" />
         </form>                      
         <span class="fl"><a href="#">咖啡</a><a href="#">iphone 6S</a><a href="#">新鲜美食</a><a href="#">蛋糕</a><a href="#">日用品</a><a href="#">连衣裙</a></span>
@@ -220,7 +220,7 @@
                                 <div class="zj_l_c">
                                     <h2>{{ $vv->cname }}</h2>
                                     @foreach($vv->sub as $kkk=>$vvv)
-                                    <a href="#">{{ $vvv->cname }}</a>
+                                    <a href="/home/list?id={{ $vvv->id }}">{{ $vvv->cname }}</a>|
                                     @endforeach
                                 </div>
                                 @endforeach

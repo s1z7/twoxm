@@ -65,3 +65,42 @@ Route::post('admin/goodsinfos/destroy/{id}','Admin\GoodsinfosController@destroy'
 
 // 前台 首页
 Route::resource('home/index','Home\IndexController');
+
+// 前台 商品列表页面
+Route::get('home/list','Home\ListController@index');
+
+// 前台 商品详情页面
+Route::get('home/details/{id}','Home\DetailsController@index');
+
+// 前台 加入购物车
+Route::get('home/car/add','Home\CarController@add');
+
+// 前台购物车页
+Route::get('home/car/index','Home\CarController@index');
+
+// 前台购物车增加商品数量
+Route::get('home/car/addnum','Home\CarController@addNum');
+
+// 前台购物车减少商品数量
+Route::get('home/car/descnum','Home\CarController@descNum');
+
+// 前台购物车删除
+Route::get('home/car/delete','Home\CarController@delete');
+
+// 前台确认结算
+Route::get('home/order/account','Home\OrderController@account');
+
+// 前台执行添加新地址
+Route::post('home/order/add','Home\OrderController@add');
+
+// 前台订单添加新地址
+Route::get('home/order/create','Home\OrderController@create');
+
+// 前台往订单表添加数据
+Route::get('home/order/index','Home\OrderController@index');
+
+// 前台查看我的订单页
+Route::get('home/order/myorder','Home\OrderController@myorder');
+
+// 前台生成订单付款页
+Route::get('home/order/myods','Home\OrderController@myods');
