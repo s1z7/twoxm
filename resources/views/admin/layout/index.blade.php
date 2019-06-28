@@ -72,20 +72,20 @@
             
             	<!-- User Photo -->
             	<div id="mws-user-photo">
-                	<img src="/d/example/profile.jpg" alt="User Photo">
+                	<img src="/uploads/{{ session('admin_user')->profile }}" alt="">
                 </div>
-                
+                @if(session('admin_user'))
                 <!-- Username and Functions -->
                 <div id="mws-user-functions">
                     <div id="mws-username">
-                        Hello, John Doe
+                        Hello, {{ session('admin_user')->uname }}
                     </div>
                     <ul>
-                    	<li><a href="#">Profile</a></li>
-                        <li><a href="#">Change Password</a></li>
-                        <li><a href="index.html">Logout</a></li>
+                        <li><a href="/admin/pass">修改 密码</a></li>
+                        <li><a href="/admin/outlogin">退出</a></li>
                     </ul>
                 </div>
+                @endif
             </div>
         </div>
     </div>
@@ -126,8 +126,32 @@
                         </ul>
                     </li>
 
+                     <li class="active">
+                        <a href="#"><i class="icon-align-justify"></i> 管理员管理</a>
+                        <ul>
+                            <li><a href="/admin/adminuser">  管理员列表</a></li>
+                            <li><a href="/admin/adminuser/create">  管理员添加</a></li>
+                        </ul>
+                    </li>
+
                     <li class="active">
-                        <a href="#"><i class="icon-align-justify"></i> 分类管理</a>
+                        <a href="#"><i class="icon-github"></i>角色管理</a>
+                        <ul>
+                            <li><a href="/admin/roles">  角色列表</a></li>
+                            <li><a href="/admin/roles/create">  角色添加</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="active">
+                        <a href="#"><i class="icon-windows"></i>权限管理</a>
+                        <ul>
+                            <li><a href="/admin/nodes">  权限列表</a></li>
+                            <li><a href="/admin/nodes/create">  权限添加</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="active">
+                        <a href="#"><i class="icon-fullscreen"></i> 分类管理</a>
                         <ul>
                             <li><a href="/admin/cates">  分类列表</a></li>
                             <li><a href="/admin/cates/create">  分类添加</a></li>
@@ -135,7 +159,7 @@
                     </li>
 
                     <li class="active">
-                        <a href="#"><i class="icon-github"></i> 品牌管理</a>
+                        <a href="#"><i class="icon-vimeo"></i> 品牌管理</a>
                         <ul>
                             <li><a href="/admin/brands">  品牌列表</a></li>
                             <li><a href="/admin/brands/create">  品牌添加</a></li>
@@ -171,14 +195,6 @@
                         <ul>
                             <li><a href="/admin/link"></i>  友情链接列表</a></li>
                             <li><a href="/admin/link/create">  友情链接添加</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="active">
-                        <a href="#"><i class="icon-plus"></i> 收货地址管理</a>
-                        <ul>
-                            <li><a href="/admin/dresse"></i>  收货地址列表</a></li>
-                            <li><a href="/admin/dresse/create">  收货地址添加</a></li>
                         </ul>
                     </li>
                 </ul>
