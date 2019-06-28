@@ -1,10 +1,6 @@
 @extends('admin.layout.index')
 
 @section('content')
-	@extends('admin.layout.index')
-
-
-@section('content')
 
 @if (count($errors) > 0)
     <div class="mws-form-message error">
@@ -71,5 +67,4 @@
         	</form>
         </div>    	
     </div>
-@endsection
 @endsection

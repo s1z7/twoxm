@@ -1,9 +1,4 @@
 @extends('admin.layout.index')
-
-@section('content')
-	@extends('admin.layout.index')
-
-
 @section('content')
 
 @if (count($errors) > 0)
@@ -50,5 +45,4 @@
         	</form>
         </div>    	
     </div>
-@endsection
 @endsection
