@@ -38,11 +38,10 @@
 <link rel="stylesheet" type="text/css" href="/d/css/themer.css" media="screen">
 
 <title>TWO 商城 后台</title>
+    @section('css')
 
-@section('css')
-
-
-@show
+    @show
+        
 
 </head>
 
@@ -81,6 +80,7 @@
                         Hello, {{ session('admin_user')->uname }}
                     </div>
                     <ul>
+                    	<li><a href="/admin/changeprofile/{{ session('admin_user')->id }}"><i class="halflings-icon user"></i>修改头像</a></li>
                         <li><a href="/admin/pass">修改 密码</a></li>
                         <li><a href="/admin/outlogin">退出</a></li>
                     </ul>

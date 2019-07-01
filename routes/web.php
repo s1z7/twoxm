@@ -14,7 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
+	
 // 后台登录页面
 Route::get('admin/login','Admin\LoginController@login');
 Route::post('admin/dologin','Admin\LoginController@dologin');
@@ -103,6 +103,9 @@ Route::group(['middleware'=>['login']],function(){
 
 			// 前台 订单页 用户删除失效订单
 			Route::get('home/order/delete/{id}','home\OrderController@delete');
+			// 后台修改头像 路由
+			Route::get('admin/changeprofile/{id}','Admin\LoginController@changeprofile');
+			Route::post('admin/doprofile/{id}','Admin\LoginController@doprofile');
 });
 // 前台 首页
 Route::resource('home/index','Home\IndexController');
@@ -157,10 +160,12 @@ Route::get('home/speak/index','Home\SpeakController@index');
 // 删除评论
 Route::get('home/speak/delete','Home\SpeakController@delete');
 
-//  前台注册  邮箱  手机号
+// 前台 注册 路由
 Route::get('home/register','Home\RegisterController@index');
 Route::get('home/register/sendPhone','Home\RegisterController@sendPhone');
+// 处理 手机号注册
 Route::post('home/register/store','Home\RegisterController@store');
+// 处理 邮箱注册
 Route::post('home/register/insert','Home\RegisterController@insert');
 Route::get('home/register/changeStatus/{id}/{token}','Home\RegisterController@changeStatus');
 //前台登录

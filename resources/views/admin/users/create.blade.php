@@ -63,7 +63,16 @@
         					<input type="file" name="profile" class="small">
         				</div>
         			</div>
-
+        			<div class="control-group success">
+                                     <label class="mws-form-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;状态</font></font><span class="required"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">*</font></font></span></label>
+                                    <div class="mws-form-item">
+                                        <ul class="mws-form-list">
+                                            <li><input type="radio" id="male" name="status" value="0" class="required" checked> <label for="male"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">未激活</font></font></label></li>
+                                            <li><input type="radio" id="female" value="1" name="status"> <label for="female"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">已激活</font></font></label></li>
+                                        </ul>
+                                        <label class="error plain" generated="true" for="gender" style="display:none"></label>
+                                    </div>
+                            </div>   
 
 
         		</div>

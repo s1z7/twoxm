@@ -2,6 +2,15 @@
 
 
 @section('content')
+@if (count($errors) > 0)
+    <div class="mws-form-message error">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <div class="mws-panel grid_8">
 	<div class="mws-panel-header">
     	<span>权限添加</span>
@@ -30,7 +39,7 @@
                 </div>
     		</div>
     		<div class="mws-button-row">
-    			<input type="submit" value="Submit" class="btn btn-danger">
+    			<input type="submit" value="添加" class="btn btn-danger">
     			<input type="reset" value="Reset" class="btn ">
     		</div>
     	</form>

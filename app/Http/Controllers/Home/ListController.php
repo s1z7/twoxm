@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Home;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Cates;
+use App\Models\Link;
+use App\Models\Daohang;
 use DB;
 
 class ListController extends Controller
@@ -22,8 +24,9 @@ class ListController extends Controller
 
     public function __construct()
     {
+
     	// 引入类文件
-		require 'D:\wamp64\www\blog\public\pscws4/pscws4.class.php';
+		require 'D:\wamp64\www\zjf\twoxm\public\pscws4/pscws4.class.php';
 		// 实例化
 		@$this->cws = new \PSCWS4;
 		//设置字符集
@@ -50,6 +53,12 @@ class ListController extends Controller
 
     public function index(Request $request)
     {	
+    	//获取导航条
+        $data_daohang = Daohang::get();
+        
+    	//获取友情链接
+        $data_link = Link::get();
+
     	// 压分词
     	//$this->dataWord();
         $id = $request->input('id','');
@@ -71,7 +80,7 @@ class ListController extends Controller
 
     	// 中文分词结束
 
-    	return view('home.list.index',['data'=>$data2]);
+    	return view('home.list.index',['data'=>$data2,'data_link'=>$data_link,'data_daohang'=>$data_daohang]);
     }
 
     public function word($text)
