@@ -51,6 +51,7 @@
                     <th>邮箱</th>
                     <th>手机号</th>
                     <th>头像</th>
+                    <th>状态</th> 
                     <th>创建时间</th>
                     <th>操作</th>
             </thead>
@@ -62,8 +63,13 @@
 				<td>{{ $v->email }}</td>
 				<td>{{ $v->phone }}</td>
 				<td>
+					@if(empty($v->userinfo->profile))
+					<img src="/h/images/kong.jpg" style="border-radius: 5px;border: 1px solid #ccc;width: 50px;" >
+					@else
 					<img style="border-radius: 5px;border: 1px solid #ccc;width: 50px;" src="/uploads/{{ $v->userinfo->profile }}">
+					@endif
 				</td>
+				<td>{{ $v->status == 0 ? '未激活' : '已激活' }}</td> 
 				<td>{{ $v->created_at }}</td>
 				<td>
 					<a href="/admin/users/{{ $v->id }}/edit" class="btn btn-warning">修改</a>

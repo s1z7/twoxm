@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Home;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Goods;
+use App\Models\Link;
 use App\Models\Goodsinfos;
 use App\Models\Brands;
 use App\Models\Cates;
@@ -30,6 +31,9 @@ class DetailsController extends Controller
      */
     public function index($id)
     {   
+    	//获取友情链接
+        $data_link = Link::get();
+
         $countCar = CarController::countCar();
 
         // 商品表数据
@@ -46,7 +50,7 @@ class DetailsController extends Controller
         }
 
         // 加载视图
-        return view('home.details.index',['goodsinfos'=>$goodsinfos,'goods'=>$goods,'brands'=>$brands,'countCar'=>$countCar]);
+        return view('home.details.index',['goodsinfos'=>$goodsinfos,'goods'=>$goods,'brands'=>$brands,'countCar'=>$countCar,'data_link'=>$data_link]);
     }
 
 }

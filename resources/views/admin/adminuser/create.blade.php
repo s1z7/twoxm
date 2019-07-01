@@ -2,6 +2,17 @@
 
 
 @section('content')
+
+@if (count($errors) > 0)
+    <div class="mws-form-message error">
+        <ul>
+        	<button type="button" class="close" data-dismiss="alert">×</button>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <div class="mws-panel grid_8">
 	<div class="mws-panel-header">
     	<span>管理员添加</span>
@@ -9,7 +20,7 @@
     <div class="mws-panel-body no-padding">
     	<form class="mws-form" action="/admin/adminuser" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
-    		<div class="mws-form-inline">
+    	   	<div class="mws-form-inline">
     			<div class="mws-form-row">
     				<label class="mws-form-label">用户名</label>
     				<div class="mws-form-item">
@@ -48,7 +59,7 @@
                 </div>
     		</div>
     		<div class="mws-button-row">
-    			<input type="submit" value="Submit" class="btn btn-danger">
+    			<input type="submit" value="添加" class="btn btn-danger">
     			<input type="reset" value="Reset" class="btn ">
     		</div>
     	</form>

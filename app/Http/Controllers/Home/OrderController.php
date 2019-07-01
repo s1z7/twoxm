@@ -10,6 +10,7 @@ use App\Models\Addresses;
 use App\Models\Cars;
 use App\Models\Orders;
 use App\Models\Speaks;
+use App\Models\Link;
 use App\Http\Controllers\Home\CarController;
 class OrderController extends Controller
 {

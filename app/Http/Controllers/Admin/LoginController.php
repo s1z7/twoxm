@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use DB;
 use Hash;
 use Session;
@@ -151,6 +152,41 @@ class LoginController extends Controller
             return back()->with('error','修改失败!');
         }
 
+    }
+    // 修改头像页面
+    public function changeprofile($id)
+    {
+
+        return view('admin.index.changeprofile');
+    }
+
+
+    // 处理修改头像 操作
+    public function doprofile(Request $request,$id)
+    {
+       
+        // 文件上传
+        if($request->hasFile('profile')){
+             //有新的文件上传 就删除之前的旧图片
+            Storage::delete($request->input('profile_path'));
+
+            $path = $request->file('profile')->store(date('Ymd'));
+        }else{
+            $path = $request->input('profile_path');
+        }
+
+       $data['profile'] = $path;
+    
+       $res = DB::table('admin_users')->where('id',$id)->update($data);
+        if($res){
+              $new_user = DB::table('admin_users')->where('id',$id)->first();
+              // dd($new_profile);
+              session(['admin_user'=>$new_user]);
+             return redirect('/admin/adminuser')->with('success','修改成功');
+              
+        }else{
+             return back()->with('error','修改失败');
+      }
     }
 
 

@@ -22,7 +22,7 @@ class UsersController extends Controller
         $search_uname = $request->input('search_uname','');
         $search_email = $request->input('search_email','');
 
-        $users = Users::where('uname','like','%'.$search_uname.'%')->where('email','like','%'.$search_email.'%')->paginate(5);
+        $users = Users::where('uname','like','%'.$search_uname.'%')->where('email','like','%'.$search_email.'%')->paginate(3);
         // 加载页面
         return view('admin.users.index',['users'=>$users,'params'=>$request->all()]);
     }
@@ -65,6 +65,7 @@ class UsersController extends Controller
         $user->upass = Hash::make($data['upass']);
         $user->email = $data['email'];
         $user->phone = $data['phone'];
+        $user->status = $data['status'];
         $res1 = $user->save();
         if($res1){
             // 获取uid
@@ -118,7 +119,17 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {   
+    {  
+    	// 验证数据
+        $this->validate($request, [
+             'email' => 'required|email',
+             'phone' => 'required|regex:/^1{1}[3-9]{1}[\d]{9}$/',
+        ],[
+             'email.required' => '邮箱必填',
+             'email.regex' => '邮箱格式错误',
+             'phone.required' => '电话必填',
+             'phone.regex' => '电话格式错误',
+        ]);
         DB::beginTransaction();
         // 获取头像
         if ($request->hasFile('profile')){
@@ -130,9 +141,17 @@ class UsersController extends Controller
         $user = Users::find($id);
         $user->email = $request->input('email','');
         $user->phone = $request->input('phone','');
+        $user->status = $request->input('status',0);
         $res1 = $user->save();
         $userinfo = UsersInfo::where('uid',$id)->first();
-        $userinfo->profile = $file_path;
+        if(empty($userinfo)){
+        	$userinfo = new UsersInfo;
+        	$userinfo->profile = $file_path;
+        	$userinfo->uid = $id;
+        }else{
+        	$userinfo->profile = $file_path;
+        }
+        
         $res2 = $userinfo->save();
 
         if($res1 && $res2){

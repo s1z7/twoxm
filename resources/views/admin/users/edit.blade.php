@@ -47,18 +47,44 @@
                     <div class="mws-form-row">
                         <label class="mws-form-label">当前头像</label>
                         <div class="mws-form-item">
-                            <img style="border-radius: 5px;border: 1px solid #ccc;width: 50px;" src="/uploads/{{ $user->userinfo->profile }}">
+                        	@if(empty($user->userinfo->profile))
+							<img src="/h/images/kong.jpg" style="border-radius: 5px;border: 1px solid #ccc;width: 50px;" >
+							@else
+							<img style="border-radius: 5px;border: 1px solid #ccc;width: 50px;" src="/uploads/{{ $user->userinfo->profile }}">
+							@endif
                         </div>
                     </div>
-                    
+                    @if(!empty($user->userinfo->profile))
                     <input type="hidden" name="old_profile" value="{{ $user->userinfo->profile }}">
+                    
+                    @endif
         			<div class="mws-form-row">
         				<label class="mws-form-label">头像</label>
         				<div class="mws-form-item">
         					<input type="file" name="profile" class="small">
         				</div>
         			</div>
-
+                    <div class="control-group success">
+                                @if($user->status == 0)
+                                     <label class="mws-form-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;状态</font></font><span class="required"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">*</font></font></span></label>
+                                    <div class="mws-form-item">
+                                        <ul class="mws-form-list">
+                                            <li><input type="radio" id="male" name="status" value="0" class="required" checked> <label for="male"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">未激活</font></font></label></li>
+                                            <li><input type="radio" id="female" value="1" name="status"> <label for="female"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">已激活</font></font></label></li>
+                                        </ul>
+                                        <label class="error plain" generated="true" for="gender" style="display:none"></label>
+                                    </div>
+                                @else
+                                     <label class="mws-form-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">状态</font></font><span class="required"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">*</font></font></span></label>
+                                    <div class="mws-form-item">
+                                        <ul class="mws-form-list">
+                                            <li><input type="radio" id="male" name="status" value="0" class="required" checked> <label for="male"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">未激活</font></font></label></li>
+                                            <li><input type="radio" id="female" value="1" name="status"> <label for="female"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">已激活</font></font></label></li>
+                                        </ul>
+                                        <label class="error plain" generated="true" for="gender" style="display:none"></label>
+                                    </div>
+                              </div>
+                             @endif
 
 
         		</div>

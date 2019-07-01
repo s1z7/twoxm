@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
@@ -12,11 +11,15 @@ class NodesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-       $data = DB::table('nodes')->get();
-        // 加载模板
-        return view('admin.nodes.index',['data'=>$data]);
+    	// 接收 搜索数据
+        $search_desc = $request->input('search_desc','');
+
+        $nodes_data = DB::table('nodes')->where('desc','like','%'.$search_desc.'%')->paginate(8);
+
+        //
+        return view('admin.nodes.index',['nodes_data'=>$nodes_data,'search_desc'=>$search_desc]);
     }
 
     /**
@@ -65,20 +68,12 @@ class NodesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
+       $node_data =  DB::table('nodes')->where('id',$id)->first();
+
         //
+        return view('admin.nodes.edit',['node_data'=>$node_data]);
     }
 
     /**
@@ -90,7 +85,19 @@ class NodesController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         //
+        $data['desc'] = $request->input('desc','');
+        $data['cname'] = $request->input('cname','');
+        $data['aname'] = $request->input('aname','');
+
+        $res = DB::table('nodes')->where('id',$id)->update($data);
+
+        if($res){
+            return redirect('admin/nodes')->with('success','修改成功');
+        }else{
+            return back()->with('error','修改失败');
+        }
     }
 
     /**

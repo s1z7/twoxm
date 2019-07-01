@@ -101,8 +101,12 @@
             </span>
         </span>
         <!--End 所在收货地区 End-->
-        <span class="fr">
-        	<span class="fl">你好，请<a href="Login.html">登录</a>&nbsp; <a href="Regist.html" style="color:#ff4e00;">免费注册</a>&nbsp;|&nbsp;<a href="#">我的订单</a>&nbsp;|</span>
+        	<span class="fr">
+        	@if(session('uname'))
+            <span class="fl">欢迎回来!&nbsp;{{session('uname')}}&nbsp;|&nbsp;<a href="/home/outlogin">退出</a>&nbsp;|&nbsp;<a href="/home/geren">个人中心</a>&nbsp;|</span>
+            @else
+        	<span class="fl">你好，请<a href="/home/login">登录</a>&nbsp; <a href="/home/register" style="color:#ff4e00;">免费注册</a>|</span>
+            @endif
         	<span class="ss">
             	<div class="ss_list">
                 	<a href="#">收藏夹</a>
@@ -130,16 +134,7 @@
                     </div>    
                 </div>
                 <div class="ss_list">
-                	<a href="#">网站导航</a>
-                    <div class="ss_list_bg">
-                    	<div class="s_city_t"></div>
-                        <div class="ss_list_c">
-                        	<ul>
-                            	<li><a href="#">网站导航</a></li>
-                                <li><a href="#">网站导航</a></li>
-                            </ul>
-                        </div>
-                    </div>    
+                	<a href="/home/index">首页</a>
                 </div>
             </span>
             <span class="fl">|&nbsp;关注我们：</span>
@@ -224,15 +219,10 @@
             </div>
         </div>  
         <!--End 商品分类详情 End-->                                                     
-    	<ul class="menu_r">                                                                                                                                               
-        	<li><a href="Index.html">首页</a></li>
-            <li><a href="Food.html">美食</a></li>
-            <li><a href="Fresh.html">生鲜</a></li>
-            <li><a href="HomeDecoration.html">家居</a></li>
-            <li><a href="SuitDress.html">女装</a></li>
-            <li><a href="MakeUp.html">美妆</a></li>
-            <li><a href="Digital.html">数码</a></li>
-            <li><a href="GroupBuying.html">团购</a></li>
+    	<ul class="menu_r">
+        @foreach($data_daohang as $k=>$v)           
+        	  <li><a style="color:black;font-weight:bold" href="{{$v->dlink}}">{{$v->dname}}</a></li>
+        @endforeach
         </ul>
         <div class="m_ad">中秋送好礼！</div>
     </div>
@@ -390,8 +380,13 @@
             </table>
         </div>
     </div>
-    <div class="b_nav">
-    	<dl>                                                                                            
+<div class="b_nav">
+    	<dl>                                                                          		<dt><a href="#">友情链接</a></dt>
+              @foreach($data_link as $k=>$v)                
+        	  <dd><a href="{{$v->url}}">{{$v->name}}</a></dd>
+              @endforeach
+        </dl>
+        <dl>                                                                                            
         	<dt><a href="#">新手上路</a></dt>
             <dd><a href="#">售后流程</a></dd>
             <dd><a href="#">购物流程</a></dd>
@@ -411,12 +406,7 @@
             <dd><a href="#">我的收藏</a></dd>
             <dd><a href="#">我的订单</a></dd>
         </dl>
-        <dl>
-        	<dt><a href="#">服务保证</a></dt>
-            <dd><a href="#">退换货原则</a></dd>
-            <dd><a href="#">售后服务保证</a></dd>
-            <dd><a href="#">产品质量保证</a></dd>
-        </dl>
+
         <dl>
         	<dt><a href="#">联系我们</a></dt>
             <dd><a href="#">网站故障报告</a></dd>
@@ -435,7 +425,7 @@
             <div class="b_er_c"><img src="/h/images/er.gif" width="118" height="118" /></div>
             <img src="/h/images/ss.png" />
         </div>
-    </div>    
+    </div>      
     <div class="btmbg">
 		<div class="btm">
         	备案/许可证编号：蜀ICP备12009302号-1-www.dingguagua.com   Copyright © 2015-2018 尤洪商城网 All Rights Reserved. 复制必究 , Technical Support: Dgg Group <br />

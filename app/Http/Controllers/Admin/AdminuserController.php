@@ -14,10 +14,14 @@ class AdminuserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = DB::table('admin_users')->get();
-        return view('admin.adminuser.index',['data'=>$data]);
+    	// 接收查询的数据
+        $search_uname = $request->input('search_uname','');
+
+        $data = DB::table('admin_users')->where('uname','like','%'.$search_uname.'%')->paginate(4);
+
+        return view('admin.adminuser.index',['data'=>$data,'search_uname'=>$search_uname]);
     }
 
     /**
@@ -27,7 +31,6 @@ class AdminuserController extends Controller
      */
     public function create()
     {
-        // 
         // 获取所有的 角色
         $roles_data = DB::table('roles')->get();
 
@@ -43,13 +46,31 @@ class AdminuserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // 开始事务
         // dump($request->all());
         DB::beginTransaction();
-        $uname = $request->input('uname',''); 
-        $upass = $request->input('upass',''); 
-        $repass = $request->input('repass',''); 
-        $rid = $request->input('rid',''); 
+        
+        $uname = $request->input('uname','');
+        $upass = $request->input('upass','');
+        $repass = $request->input('repass','');
+        $rid = $request->input('rid','');
+        // 验证数据
+        $this->validate($request, [
+             'uname' => 'required|regex:/^[\w]{6,18}$/',
+             'upass' => 'required|regex:/^[\w]{6,18}$/',
+             'repass' => 'required|same:upass',
+             'rid' => 'required',
+             'profile' => 'required',
+        ],[
+             'uname.required' => '用户名必填',
+             'uname.regex' => '用户名格式错误',
+             'upass.required' => '密码必填',
+             'upass.regex' => '密码格式错误',
+             'repass.required' => '确认密码必填',
+             'repass.same' => '两次密码不一致',
+             'rid.required' => '角色权限必填',
+             'profile.required' => '头像必填',
+        ]);
 
         if($upass != $repass){
             return back()->width('error','俩次密码不一致');
@@ -61,6 +82,7 @@ class AdminuserController extends Controller
         }else{
             $path = '';
         }
+
 
         $temp['uname'] = $uname;
         $temp['upass'] = Hash::make($upass);
@@ -75,8 +97,8 @@ class AdminuserController extends Controller
             DB::commit();
             return redirect('admin/adminuser')->with('success','添加成功');
         }else{
-            return back()->with('error','添加失败');
             DB::rollBack();
+            return back()->with('error','添加失败');
         }
 
     }
@@ -100,7 +122,16 @@ class AdminuserController extends Controller
      */
     public function edit($id)
     {
-        //
+
+         $data = DB::table('admin_users')->where('id',$id)->first();
+         //    dd($data);
+         // 获取所有的角色
+         $roles_data = DB::table('roles')->get();
+          // dd($roles_data);
+         $role_data = DB::table('adminusers_roles')->where('uid',$id)->first();
+         //dd($role_data);
+
+         return view('admin.adminuser.edit',['roles_data'=>$roles_data,'data'=>$data,'role_data'=>$role_data]);
     }
 
     /**
@@ -113,6 +144,19 @@ class AdminuserController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+        $uname = $request->input('uname','');
+        // $profile = $path;
+        $rid = $request->input('rid','');
+
+
+        $res = DB::table('adminusers_roles')->where('uid',$id)->update(['rid'=>$rid]);
+
+         if($res){
+            return redirect('admin/adminuser')->with('success','修改成功');
+        }else{
+            return back()->with('error','修改失败');
+        }
     }
 
     /**
