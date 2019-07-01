@@ -79,6 +79,30 @@ Route::group(['middleware'=>['login']],function(){
 			//修改密码
 			Route::get('admin/pass','Admin\LoginController@pass');
 			Route::post('admin/dopass','Admin\LoginController@dopass');
+
+			// 后台订单列表 
+			Route::get('admin/ordermanage/index','Admin\OrdermanageController@index');
+
+			// 后台订单详情
+			Route::get('admin/ordermanage/info/{id}','Admin\OrdermanageController@info');
+
+			// 后台执行发货
+			Route::get('admin/ordermanage/send/{id}','admin\OrdermanageController@send');
+
+			// 后台取消订单
+			Route::get('admin/ordermanage/cancel/{id}','admin\OrdermanageController@cancel');
+
+			// 前台 订单页 用户取消订单
+			Route::get('admin/ordermanage/apply/{id}','admin\OrdermanageController@apply');
+			
+			// 后台查看评论
+			Route::get('admin/speak/index','Admin\SpeakController@index');
+
+			// 前台 订单页 用户确认收货
+			Route::get('admin/ordermanage/confirm/{id}','admin\OrdermanageController@confirm');
+
+			// 前台 订单页 用户删除失效订单
+			Route::get('home/order/delete/{id}','home\OrderController@delete');
 });
 // 前台 首页
 Route::resource('home/index','Home\IndexController');
@@ -122,6 +146,16 @@ Route::get('home/order/myorder','Home\OrderController@myorder');
 
 // 前台生成订单付款页
 Route::get('home/order/myods','Home\OrderController@myods');
+// 前台评论页面
+Route::get('home/order/speak/{id}','Home\OrderController@speak');
+// 前台执行添加评论
+Route::post('home/order/dospeak/{id}','Home\OrderController@dospeak');
+
+// 查看评论
+Route::get('home/speak/index','Home\SpeakController@index');
+
+// 删除评论
+Route::get('home/speak/delete','Home\SpeakController@delete');
 
 //  前台注册  邮箱  手机号
 Route::get('home/register','Home\RegisterController@index');

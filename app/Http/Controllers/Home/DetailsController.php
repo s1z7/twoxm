@@ -8,6 +8,7 @@ use App\Models\Goods;
 use App\Models\Goodsinfos;
 use App\Models\Brands;
 use App\Models\Cates;
+use App\Models\Speaks;
 use App\Http\Controllers\Home\CarController;
 
 class DetailsController extends Controller
@@ -39,14 +40,14 @@ class DetailsController extends Controller
         // dd($brands);
         // 商品详情
         $goodsinfos = Goodsinfos::where('goods_id',$goods->id)->first();
-
+        $speak = Speaks::where('goods_id',$id)->get();
         //没有详情就返回
         if(empty($goodsinfos)){
             return back();
         }
 
         // 加载视图
-        return view('home.details.index',['goodsinfos'=>$goodsinfos,'goods'=>$goods,'brands'=>$brands,'countCar'=>$countCar]);
+        return view('home.details.index',['goodsinfos'=>$goodsinfos,'goods'=>$goods,'brands'=>$brands,'countCar'=>$countCar,'speak'=>$speak]);
     }
 
 }

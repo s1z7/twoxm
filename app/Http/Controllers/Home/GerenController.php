@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Link;
 use App\Models\Users;
 use App\Models\UsersInfo;
+use App\Models\Orders;
 use DB;
 use Hash;
 class GerenController extends Controller
@@ -142,10 +143,12 @@ class GerenController extends Controller
     //显示订单
     public function dingdan()
     {
+        $allods = Orders::where('users_id',session('id'))->get();
+
     	//获取友情链接
         $data_link = Link::get();
         //显示订单
-        return view ('home.geren.dingdan',['data_link'=>$data_link]);
+        return view ('home.geren.dingdan',['data_link'=>$data_link,'allods'=>$allods]);
     }
 
 }

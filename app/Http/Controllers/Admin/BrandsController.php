@@ -16,11 +16,14 @@ class BrandsController extends Controller
      */
     public function index(Request $request)
     {   
-        $bname = $request->input('bname','');
+        $search_bname = $request->input('search_bname','');
+
+         $brands = Brands::where('bname','like','%'.$search_bname.'%')->paginate(5);
+        /*$bname = $request->input('bname','');
         // 根据条件查询
-        $brands = Brands::where('bname','like','%'.$bname.'%')->paginate(3);
+        $brands = Brands::where('bname','like','%'.$bname.'%')->paginate(3);*/
         // 加载视图
-        return view ('admin.brands.index',['brands'=>$brands,'bname'=>$bname,'params'=>$request->all()]);
+        return view ('admin.brands.index',['brands'=>$brands,'params'=>$request->all()]);
     }
 
     /**

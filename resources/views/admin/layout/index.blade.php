@@ -197,6 +197,18 @@
                             <li><a href="/admin/link/create">  友情链接添加</a></li>
                         </ul>
                     </li>
+                    <li class="active">
+                        <a href="#"><i class="icon-picassa"></i> 订单管理</a>
+                        <ul>
+                            <li><a href="/admin/ordermanage/index"></i>  订单列表</a></li>
+                        </ul>
+                    </li>
+                    <li class="active">
+                        <a href="#"><i class="icon-picassa"></i> 评论管理</a>
+                        <ul>
+                            <li><a href="/admin/speak/index"></i>  评论列表</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>

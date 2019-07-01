@@ -192,6 +192,7 @@
             	<div class="left_m_t t_bg1">订单中心</div>
                 <ul>
                 	<li><a href="/home/geren/dingdan">我的订单</a></li>
+                    <li><a href="/home/speak/index">我的评论</a></li>
                 </ul>
             </div>
             <div class="left_m">

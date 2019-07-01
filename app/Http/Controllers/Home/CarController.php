@@ -22,7 +22,7 @@ class CarController extends Controller
     	$data = DB::table('goods')->select('id','title','price')->where('id',$id)->first();
     	$data->num = 1;
     	$data->xiaoji = ($data->price * $data->num);
-
+        $data->numbers = date('Ymd').mt_rand(1000, 9999);
     	$_SESSION['car'][$id] = $data;
    		}else{
     		// 当前数量

@@ -12,28 +12,19 @@
     
     <script type="text/javascript" src="/h/js/jquery-1.8.2.min.js"></script>
     <script type="text/javascript" src="/h/js/menu.js"></script>    
-            
-    <script type="text/javascript" src="/h/js/lrscroll_1.js"></script>   
-     
+                
+    <script type="text/javascript" src="/h/js/n_nav.js"></script>   
     
-    <script type="text/javascript" src="/h/js/n_nav.js"></script>
-    
-    <link rel="stylesheet" type="text/css" href="/h/css/ShopShow.css" />
-    <link rel="stylesheet" type="text/css" href="/h/css/MagicZoom.css" />
-    <script type="text/javascript" src="/h/js/MagicZoom.js"></script>
+    <script type="text/javascript" src="/h/js/select.js"></script>
     
     <script type="text/javascript" src="/h/js/num.js">
         var jq = jQuery.noConflict();
-    </script>
-        
-    <script type="text/javascript" src="/h/js/p_tab.js"></script>
+    </script>     
     
     <script type="text/javascript" src="/h/js/shade.js"></script>
     
 <title>尤洪</title>
 </head>
-<body>  
-<!--Begin Header Begin-->
 <div class="soubg">
     <div class="sou">
         <!--Begin 所在收货地区 Begin-->
@@ -160,7 +151,7 @@
     </div>
 </div>
 <div class="top">
-    <div class="logo"><a href="Index.html"><img src="/h/images/logo.png" /></a></div>
+    <div class="logo"><a href="/home/index"><img src="/h/images/logo.png" /></a></div>
     <div class="search">
         <form>
             <input type="text" value="" class="s_ipt" />
@@ -168,10 +159,9 @@
         </form>                      
         <span class="fl"><a href="#">咖啡</a><a href="#">iphone 6S</a><a href="#">新鲜美食</a><a href="#">蛋糕</a><a href="#">日用品</a><a href="#">连衣裙</a></span>
     </div>
-    <div class="i_car">
-        <div class="car_t"><a href="/home/car/index">购物车 [ <span>{{$countCar}}</span> ]</a></div>
-    </div>
+    
 </div>
+<!--End Header End--> 
 <!--Begin Menu Begin-->
 <div class="menu_bg">
     <div class="menu">
@@ -179,20 +169,20 @@
         <div class="nav">
             <div class="nav_t">全部商品分类</div>
             <div class="leftNav none">
-                <ul>
-                    @foreach($common_cates_data as $k=>$v)      
+                <ul>      
+                    @foreach($common_cates_data as $k=>$v)   
                     <li>
                         <div class="fj">
                             <span class="n_img"><span></span><img src="/h/images/nav1.png" /></span>
-                            <span class="fl">{{ $v->cname }}</span>
+                            <span class="fl">{{$v->cates_name}}</span>
                         </div>
                         <div class="zj">
                             <div class="zj_l">
                                 @foreach($v->sub as $kk=>$vv)
                                 <div class="zj_l_c">
-                                    <h2>{{ $vv->cname }}</h2>
+                                    <h2>{{$vv->cates_name}}</h2>
                                     @foreach($vv->sub as $kkk=>$vvv)
-                                    <a href="/home/list?id={{ $vvv->id}}">{{ $vvv->cname }}</a>|
+                                    <a href="/home/list?id={{ $vvv->id}}">{{$vvv->cates_name}}</a>|
                                     @endforeach
                                 </div>
                                 @endforeach
@@ -202,13 +192,13 @@
                                 <a href="#"><img src="/h/images/n_img2.jpg" width="236" height="200" /></a>
                             </div>
                         </div>
-                    </li>
-                    @endforeach                     
+                    </li>  
+                    @endforeach                             
                 </ul>            
             </div>
         </div>  
         <!--End 商品分类详情 End-->                                                     
-        <ul class="menu_r">
+        <ul class="menu_r">                                                                                                                                               
             <li><a href="Index.html">首页</a></li>
             <li><a href="Food.html">美食</a></li>
             <li><a href="Fresh.html">生鲜</a></li>
@@ -221,230 +211,29 @@
         <div class="m_ad">中秋送好礼！</div>
     </div>
 </div>
-<!--End Menu End--> 
-<div class="i_bg">
-    <div class="postion">
-        <span class="fl">全部 > 美妆个护 > 香水 > 迪奥 > 迪奥真我香水</span>
-    </div>    
-    <div class="content">
-                            
-        <div id="tsShopContainer">
-            <div id="tsImgS"><a href="/uploads/{{$goods->pic}}" title="Images" class="MagicZoom" id="MagicZoom"><img src="/uploads/{{$goods->pic}}" width="390" height="390" /></a></div>
-            <div id="tsPicContainer">
-                <div id="tsImgSArrL" onclick="tsScrollArrLeft()"></div>
-                <div id="tsImgSCon">
-                    <ul>
-                        <li onclick="showPic(0)" rel="MagicZoom" class="tsSelectImg"><img src="/uploads/{{$goods->pic}}" tsImgS="/uploads/{{$goods->pic}}" width="79" height="79" /></li>
-                        <li onclick="showPic(1)" rel="MagicZoom"><img src="/uploads/{{$goodsinfos->pic1}}" tsImgS="/uploads/{{$goodsinfos->pic1}}" width="79" height="79" /></li>
-                        <li onclick="showPic(2)" rel="MagicZoom"><img src="/uploads/{{$goodsinfos->pic2}}" tsImgS="/uploads/{{$goodsinfos->pic2}}" width="79" height="79" /></li>
-                        <li onclick="showPic(3)" rel="MagicZoom"><img src="/uploads/{{$goodsinfos->pic3}}" tsImgS="/uploads/{{$goodsinfos->pic3}}" width="79" height="79" /></li>
-                    </ul>
-                </div>
-                <div id="tsImgSArrR" onclick="tsScrollArrRight()"></div>
-            </div>
-            <img class="MagicZoomLoading" width="16" height="16" src="/ho/images/loading.gif" alt="Loading..." />               
-        </div>
-        
-        
-        <div class="pro_des">
-            <div class="des_name">
-                <p>{{ $goods->title }}</p>
-                “开业巨惠，北京专柜直供”，不光低价，“真”才靠谱！
-            </div>
-            <div class="des_price">
-                本店价格：<b>￥{{ $goods->price }}</b><br />
-            </div>
-            <div class="des_choice">
-                <span class="fl">商品型号：</span>
-                <ul>
-                    <li class="checked">{{ $goodsinfos->capa }}<div class="ch_img"></div></li>
-            </div>
-            <div class="des_choice">
-                <span class="fl">商品属性：</span>
-                <ul>
-                    <li class="checked">{{ $goodsinfos->taste }}<div class="ch_img"></div></li>
-                </ul>
-            </div>
-            <div class="des_share">
-                <div class="d_sh">
-                    分享
-                    <div class="d_sh_bg">
-                        <a href="#"><img src="/h/images/sh_1.gif" /></a>
-                        <a href="#"><img src="/h/images/sh_2.gif" /></a>
-                        <a href="#"><img src="/h/images/sh_3.gif" /></a>
-                        <a href="#"><img src="/h/images/sh_4.gif" /></a>
-                        <a href="#"><img src="/h/images/sh_5.gif" /></a>
-                    </div>
-                </div>
-                <div class="d_care"><a onclick="ShowDiv('MyDiv','fade')">关注商品</a></div>
-            </div>
-            <div class="des_join">
-                <span class="fl"><a href="/home/car/add?id={{ $goods->id }}"><img src="/h/images/j_car.png" /></a></span>
-            </div>            
-        </div>    
-        
-        <div class="s_brand">
-            <div class="s_brand_img"><img src="/h/images/sbrand.jpg" width="188" height="132" /></div>
-            <div class="s_brand_c"><a href="#">进入品牌专区</a></div>
-        </div>    
-        
-        
+<div class="content mar_20">
+    <div class="two_bg">
+        <div class="two_t">添加新地址</div>
+        <form action="/home/order/add" method="post">
+            {{ csrf_field() }}
+            <table border="0" style="width:1110px;" cellspacing="0" cellpadding="0">
+                <tr height="45">
+                    <td align="right">收货人姓名: &nbsp; &nbsp;</td>
+                    <td><input type="text" class="add_ipt" style="width:290px;" name="name"></td>
+                </tr>
+                <tr height="45">
+                    <td align="right">详细地址: &nbsp; &nbsp;</td>
+                    <td><input type="text" class="add_ipt" style="width:290px;" name="address"></td>
+                </tr>
+                <tr height="45">
+                    <td align="right">联系方式:&nbsp; &nbsp;</td>
+                    <td><input type="text" class="add_ipt" style="width:290px;" name="phone"></td>
+                </tr>
+            </table>
+            <button style="width:180px; height:30px; margin-left:330px; margin-top:20px; border:1px solid pink; background:pink">添加新地址</button>
+        </form>
     </div>
-    <div class="content mar_20">
-        <div class="l_list">            
-            
-            <div class="des_border">
-                <div class="des_tit">
-                    <ul>
-                        <li class="current"><a href="#p_attribute">商品属性</a></li>
-                        <li><a href="#p_details">商品详情</a></li>
-                        <li><a href="#p_comment">商品评论</a></li>
-                    </ul>
-                </div>
-                <div class="des_con" id="p_attribute">
-                    
-                    <table border="0" align="center" style="width:100%; font-family:'宋体'; margin:10px auto;" cellspacing="0" cellpadding="0">
-                      <tr>
-                        <td>商品名称：{{ $goods->title }}</td>
-                        <td>商品编号：1546211</td>
-                        <td>品牌： {{ $brands->bname }}</td>
-                      </tr>
-                      <tr>
-                        <td>商品产地： 中国</td>
-                        <td>商品型号：{{ $goodsinfos->capa }}</td>
-                        <td>上架时间：2019-06-27 09:19:09 </td>
-                        <td>&nbsp;</td>
-                      </tr>
-                      <tr>
-                        <td>商品属性: {{ $goodsinfos->taste }}</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                      </tr>
-                    </table>                                               
-                                            
-                        
-                </div>
-            </div>  
-            
-            <div class="des_border" id="p_details">
-                <div class="des_t">商品详情</div>
-                <div class="des_con">
-                    <table border="0" align="center" style="width:745px; font-size:14px; font-family:'宋体';" cellspacing="0" cellpadding="0">
-                      <tr>
-                        <td width="400"><img src="/uploads/{{ $goods->pic }}" width="350" height="412" /></td>
-                        <td>
-                            <b>{{$goods->title}}</b><br />
-                            【商品规格】：{{ $goodsinfos->capa }}<br />
-                            【商品属性】：{{ $goodsinfos->taste }}<br />
-                            【商品日期】：与专柜同步更新<br />
-                            【商品产地】：中国<br />
-                            【商品包装】：无外盒 无塑封<br />
-                        </td>
-                      </tr>
-                    </table>
-                    
-                    <p align="center">
-                    <img src="/uploads/{{ $goodsinfos->pic1 }}"/><br /><br />
-                    <img src="/uploads/{{ $goodsinfos->pic2 }}"/><br /><br />
-                    <img src="/uploads/{{ $goodsinfos->pic3 }}"/><br />
-                    </p>
-                    
-                </div>
-            </div>  
-            
-            <div class="des_border" id="p_comment">
-                <div class="des_t">商品评论</div>
-                    <table border="0" class="jud_list" style="width:100%; margin-top:30px;" cellspacing="0" cellpadding="0">
-                        @if(!empty($speak))
-                        @foreach($speak as $k=>$v)
-                        <tr valign="top">
-                            <td width="160"><img src="/uploads/{{$v->speaks_users->userinfo->profile}}" width="20" height="20" align="absmiddle" />&nbsp;{{$v->speaks_users->uname}}</td>
-                            <td width="180">
-                                @if($v->start == 0)
-                                    五星好评
-                                @else
-                                    零星差评
-                                @endif
-                            </td>
-                            <td>
-                                <img src="/uploads/{{$v->picture}}" style="width:50px;">
-                            </td>
-                            <td>
-                                {{$v->speak}} <br />
-                                <font color="#999999">{{$v->created_at}}</font>
-                            </td>
-                        </tr>
-                        @endforeach
-                        @endif
-                    </table>
-               
-                
-            </div>
-            
-            
-        </div>
-    </div>
-    
-    
-    <!--Begin 弹出层-收藏成功 Begin-->
-    <div id="fade" class="black_overlay"></div>
-    <div id="MyDiv" class="white_content">             
-        <div class="white_d">
-            <div class="notice_t">
-                <span class="fr" style="margin-top:10px; cursor:pointer;" onclick="CloseDiv('MyDiv','fade')"><img src="/h/images/close.gif" /></span>
-            </div>
-            <div class="notice_c">
-                
-                <table border="0" align="center" style="margin-top:;" cellspacing="0" cellpadding="0">
-                  <tr valign="top">
-                    <td width="40"><img src="/h/images/suc.png" /></td>
-                    <td>
-                        <span style="color:#3e3e3e; font-size:18px; font-weight:bold;">您已成功收藏该商品</span><br />
-                        <a href="#">查看我的关注 >></a>
-                    </td>
-                  </tr>
-                  <tr height="50" valign="bottom">
-                    <td>&nbsp;</td>
-                    <td><a href="#" class="b_sure">确定</a></td>
-                  </tr>
-                </table>
-                    
-            </div>
-        </div>
-    </div>    
-    <!--End 弹出层-收藏成功 End-->
-    
-    
-    <!--Begin 弹出层-加入购物车 Begin-->
-    <div id="fade1" class="black_overlay"></div>
-    <div id="MyDiv1" class="white_content">             
-        <div class="white_d">
-            <div class="notice_t">
-                <span class="fr" style="margin-top:10px; cursor:pointer;" onclick="CloseDiv_1('MyDiv1','fade1')"><img src="/h/images/close.gif" /></span>
-            </div>
-            <div class="notice_c">
-                
-                <table border="0" align="center" style="margin-top:;" cellspacing="0" cellpadding="0">
-                  <tr valign="top">
-                    <td width="40"><img src="/h/images/suc.png" /></td>
-                    <td>
-                        <span style="color:#3e3e3e; font-size:18px; font-weight:bold;">宝贝已成功添加到购物车</span><br />
-                        购物车共有1种宝贝（3件） &nbsp; &nbsp; 合计：1120元
-                    </td>
-                  </tr>
-                  <tr height="50" valign="bottom">
-                    <td>&nbsp;</td>
-                    <td><a href="#" class="b_sure">去购物车结算</a><a href="#" class="b_buy">继续购物</a></td>
-                  </tr>
-                </table>
-                    
-            </div>
-        </div>
-    </div>    
-    <!--End 弹出层-加入购物车 End-->
-    
-    
-    
+</div>
     <!--Begin Footer Begin -->
     <div class="b_btm_bg bg_color">
         <div class="b_btm">
@@ -531,7 +320,6 @@
 
 </body>
 
-<script src="/h/js/ShopShow.js"></script>
 
 <!--[if IE 6]>
 <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
